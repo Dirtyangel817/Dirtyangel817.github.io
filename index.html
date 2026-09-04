@@ -221,13 +221,13 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect1" defer></script>
+  <script src="app.js?v=protect2" defer></script>
   <script>
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect1").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect2").catch(function () {});
       }, start);
     });
   </script>
