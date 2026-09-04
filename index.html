@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect6" />
+  <link rel="stylesheet" href="styles.css?v=protect7" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -121,6 +121,7 @@
         </div>
       </div>
       <div class="runway-abyss" aria-hidden="true"></div>
+      <div class="world-zoom" id="world-zoom">
       <div class="track-layer" id="track-layer">
         <div class="track-world" id="track-world"></div>
       </div>
@@ -142,6 +143,7 @@
         <div class="fan-arc" id="fan-arc" aria-hidden="true"></div>
       </div>
       <div class="combo-stage" id="combo-stage" hidden aria-hidden="true"></div>
+      </div>
       <p class="run-hint">WASD 移动 · 双击 A/D 滑铲 · 空格跳 · J 攻击 · K 玉净瓶 · 右键暂停</p>
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
         <button type="button" class="touch-btn touch-btn--pause" data-pad="pause" aria-label="暂停">暂停</button>
@@ -243,7 +245,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect6" defer></script>
+  <script src="app.js?v=protect7" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -257,7 +259,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect6").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect7").catch(function () {});
       }, start);
     });
   </script>
