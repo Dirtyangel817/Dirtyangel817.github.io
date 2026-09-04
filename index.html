@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect5" />
+  <link rel="stylesheet" href="styles.css?v=combo109" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -226,7 +226,13 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect5" defer></script>
+  <script src="sword-config.js?v=combo101" defer></script>
+  <script src="sword-input.js?v=combo1" defer></script>
+  <script src="sword-audio.js?v=combo16" defer></script>
+  <script src="sword-hitstop.js?v=sword2" defer></script>
+  <script src="sword-camera.js?v=combo14" defer></script>
+  <script src="sword-combat.js?v=combo104" defer></script>
+  <script src="combat.js?v=combo255" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -240,7 +246,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect5").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=play1").catch(function () {});
       }, start);
     });
   </script>
