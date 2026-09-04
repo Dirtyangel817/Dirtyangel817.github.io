@@ -1,12 +1,12 @@
 (() => {
-  const a = [203,127,147,51,178,169,27,84,247,13,4,182,237,115,155,206,249,11,13,236,10,118,38,66,122,248,209,165,36,94,246,95];
-  const z = [70,53,31,215,145,158,152,205,226,246,169,158,247,65,164,173,112,109,69,12,221,245,195,178,107,126,201,173,69,133,138,172];
+  const a = [59,140,13,206,228,71,160,50,187,179,173,211,132,113,244,230,109,13,148,239,154,48,12,236,16,65,53,58,220,149,156,118];
+  const z = [98,83,119,37,72,12,237,103,197,50,96,40,242,185,35,234,217,77,122,210,197,74,240,229,60,32,165,82,148,50,153,233];
   const fail = () => {
     const bootEl = document.getElementById("boot");
     if (bootEl) bootEl.textContent = "LOAD FAILED";
   };
   const boot = async () => {
-    const res = await fetch("app.dat?v=protect28");
+    const res = await fetch("app.dat?v=protect29");
     if (!res.ok) throw new Error("payload " + res.status);
     const bytes = new Uint8Array(await res.arrayBuffer());
     const k = a;

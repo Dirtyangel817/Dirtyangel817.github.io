@@ -55,7 +55,8 @@
     document.addEventListener("contextmenu", function (e) { if (!cbgStatsTarget(e.target)) e.preventDefault(); });
   </script>
   <title>勇闯三星藏宝阁</title>
-  <link rel="stylesheet" href="styles.css?v=protect28" />
+  <link rel="preload" as="fetch" href="app.dat?v=protect29" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=protect29" />
   <link rel="preload" as="font" href="assets/fonts/PressStart2P.woff2?v=font4" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="assets/fonts/MuzaiPixel.woff2?v=font2" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
@@ -306,7 +307,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect28" defer></script>
+  <script src="app.js?v=protect29" defer></script>
   <script>
     (function () {
       var shown = false;
@@ -379,7 +380,7 @@
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var kick = function () {
-        navigator.serviceWorker.register("sw.js?v=protect28").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect29").catch(function () {});
       };
       var delay = navigator.serviceWorker.controller ? 400 : 4000;
       if (window.requestIdleCallback && delay > 400) requestIdleCallback(kick, { timeout: delay });
