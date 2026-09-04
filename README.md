@@ -1,7 +1,3 @@
-# 勇闯三星藏宝阁
+# 鍕囬棷涓夋槦钘忓疂闃?
 
-在线游玩：
-
-**https://dirtyangel817.github.io/**
-
-这是公开的游戏网页。源代码仓库是私有的。
+鍦ㄧ嚎娓哥帺锛歨ttps://dirtyangel817.github.io/

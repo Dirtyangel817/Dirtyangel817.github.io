@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const CACHE = "cbg-bg10";
+  const CACHE = "cbg-protect1";
   const PRECACHE = [
     "assets/biaoti/background2.webp?v=bg9",
     "assets/biaoti/background1.webp?v=bg9",

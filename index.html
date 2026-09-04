@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=combo102" />
+  <link rel="stylesheet" href="styles.css?v=protect1" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg9" fetchpriority="high" />
 </head>
 <body>
@@ -221,19 +221,13 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="sword-config.js?v=combo101" defer></script>
-  <script src="sword-input.js?v=combo1" defer></script>
-  <script src="sword-audio.js?v=combo15" defer></script>
-  <script src="sword-hitstop.js?v=sword2" defer></script>
-  <script src="sword-camera.js?v=combo14" defer></script>
-  <script src="sword-combat.js?v=combo103" defer></script>
-  <script src="combat.js?v=combo248" defer></script>
+  <script src="app.js?v=protect1" defer></script>
   <script>
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=bg10").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect1").catch(function () {});
       }, start);
     });
   </script>
