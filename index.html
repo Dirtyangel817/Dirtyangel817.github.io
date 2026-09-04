@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect24" />
+  <link rel="stylesheet" href="styles.css?v=protect25" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -283,25 +283,28 @@
       <h1 class="cbg-stats__title">宝阁数据</h1>
       <p class="cbg-stats__lead">这是给你看的后台：访客人数、死在第几关、法宝选择、最近对局。玩家正常打开游戏看不到这一页，把地址收藏起来即可。</p>
       <details id="cbg-stats-setup" class="cbg-stats__setup" open>
-        <summary>第一次使用：接通免费数据仓库（约 3 分钟）</summary>
+        <summary>第一次使用：用 Cloudflare 接通仓库（免费，邮箱即可）</summary>
         <ol class="cbg-stats__steps">
-          <li>打开 <a href="https://console.leancloud.app/register" target="_blank" rel="noreferrer">LeanCloud 国际版</a> 注册并登录（邮箱即可，github.io 不用备案）。</li>
-          <li>创建一个免费应用。进入 <b>Settings → App keys</b>，复制 <b>App ID</b> 和 <b>App Key</b>（不要复制 Master Key）。</li>
-          <li>打开 <b>Settings → Security</b>，在 Web security domains 里加上 <code>https://dirtyangel817.github.io</code>。本地测试一般不用加；若用 127.0.0.1 打开失败，再把 <code>http://127.0.0.1:端口</code> 加上。</li>
-          <li>填到下面，点「查看数据」。通了之后点「复制配置」，粘进项目里的 <code>stats-config.js</code>，再重新发布网页，之后所有玩家都会被统计。</li>
+          <li>打开 <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noreferrer">Cloudflare 注册页</a>，用邮箱注册并登录。</li>
+          <li>进入 <b>Workers &amp; Pages</b> → <b>Create</b> → <b>Start with Hello World</b>，先部署一次。</li>
+          <li>点本页「生成口令」，再点「复制 Worker 脚本」。到 Worker 里 <b>Edit code</b>，全部替换后 <b>Save and Deploy</b>。</li>
+          <li><b>Settings → Bindings</b> 添加 KV Namespace，变量名必须填 <code>STATS</code>（可点创建新命名空间）。</li>
+          <li><b>Settings → Variables and Secrets</b> 添加密钥，名字填 <code>OWNER_KEY</code>，值填刚才的口令。</li>
+          <li>把 Worker 的 <code>https://….workers.dev</code> 网址填到下面，点「查看数据」。通了之后点「复制游戏配置」，粘进 <code>stats-config.js</code> 再发布。口令不要写进游戏。</li>
         </ol>
         <div class="cbg-stats__form">
-          <label>App ID<input id="cbg-stats-id" type="text" spellcheck="false" autocomplete="off" placeholder="控制台 App keys 里那一长串" /></label>
-          <label>App Key<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="off" placeholder="App Key，不是 Master Key" /></label>
-          <label>服务器地址（国际版可留空自动填）<input id="cbg-stats-url" type="url" spellcheck="false" placeholder="https://xxxxxxxx.api.lncldglobal.com" /></label>
+          <label>Worker 网址<input id="cbg-stats-ep" type="url" spellcheck="false" placeholder="https://cbg-stats.你的账号.workers.dev" /></label>
+          <label>口令<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="off" placeholder="点「生成口令」，和 OWNER_KEY 一致" /></label>
           <div class="cbg-stats__btns">
+            <button type="button" id="cbg-stats-gen">生成口令</button>
+            <button type="button" id="cbg-stats-copy-worker">复制 Worker 脚本</button>
+            <button type="button" id="cbg-stats-copy">复制游戏配置</button>
             <button type="button" id="cbg-stats-go">查看数据</button>
-            <button type="button" id="cbg-stats-copy">复制配置</button>
             <button type="button" id="cbg-stats-demo">看看样例</button>
           </div>
         </div>
         <p id="cbg-stats-status" class="cbg-stats__status"></p>
-        <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="stats-config.js 内容"></textarea>
+        <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="Cloudflare Worker 脚本"></textarea>
       </details>
       <div id="cbg-stats-view" class="cbg-stats__view"></div>
     </div>
@@ -311,7 +314,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect24" defer></script>
+  <script src="app.js?v=protect25" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -325,7 +328,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect24").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect25").catch(function () {});
       }, start);
     });
   </script>
