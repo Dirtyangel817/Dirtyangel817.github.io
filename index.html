@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect22" />
+  <link rel="stylesheet" href="styles.css?v=protect23" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -281,23 +281,28 @@
   <div id="cbg-stats" class="cbg-stats" hidden>
     <div class="cbg-stats__panel">
       <h1 class="cbg-stats__title">宝阁数据</h1>
-      <p class="cbg-stats__lead">只有知道口令的人能看。玩家正常打开游戏看不到这一页。</p>
-      <ol class="cbg-stats__steps">
-        <li>打开 <a href="https://script.google.com" target="_blank" rel="noreferrer">script.google.com</a>，新建项目，点「生成口令」后复制脚本粘贴进去。</li>
-        <li>部署 → 新部署 → 类型选「网页应用」。执行身份选「我」，访问对象选「任何人」。</li>
-        <li>把部署得到的网址和口令填在下面，点「查看数据」。</li>
-      </ol>
-      <div class="cbg-stats__form">
-        <label>网页应用网址<input id="cbg-stats-ep" type="url" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec" /></label>
-        <label>口令<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="current-password" /></label>
-        <div class="cbg-stats__btns">
-          <button type="button" id="cbg-stats-gen">生成口令</button>
-          <button type="button" id="cbg-stats-copy">复制脚本</button>
-          <button type="button" id="cbg-stats-go">查看数据</button>
+      <p class="cbg-stats__lead">这是给你看的后台：访客人数、死在第几关、法宝选择、最近对局。玩家正常打开游戏看不到这一页，把地址收藏起来即可。</p>
+      <details id="cbg-stats-setup" class="cbg-stats__setup" open>
+        <summary>第一次使用：接通免费数据仓库（约 3 分钟）</summary>
+        <ol class="cbg-stats__steps">
+          <li>打开 <a href="https://console.leancloud.app/register" target="_blank" rel="noreferrer">LeanCloud 国际版</a> 注册并登录（邮箱即可，github.io 不用备案）。</li>
+          <li>创建一个免费应用。进入 <b>Settings → App keys</b>，复制 <b>App ID</b> 和 <b>App Key</b>（不要复制 Master Key）。</li>
+          <li>打开 <b>Settings → Security</b>，在 Web security domains 里加上 <code>https://dirtyangel817.github.io</code>。本地测试不用加，localhost 默认放行。</li>
+          <li>填到下面，点「查看数据」。通了之后点「复制配置」，粘进项目里的 <code>stats-config.js</code>，再重新发布网页，之后所有玩家都会被统计。</li>
+        </ol>
+        <div class="cbg-stats__form">
+          <label>App ID<input id="cbg-stats-id" type="text" spellcheck="false" autocomplete="off" placeholder="控制台 App keys 里那一长串" /></label>
+          <label>App Key<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="off" placeholder="App Key，不是 Master Key" /></label>
+          <label>服务器地址（国际版可留空自动填）<input id="cbg-stats-url" type="url" spellcheck="false" placeholder="https://xxxxxxxx.api.lncldglobal.com" /></label>
+          <div class="cbg-stats__btns">
+            <button type="button" id="cbg-stats-go">查看数据</button>
+            <button type="button" id="cbg-stats-copy">复制配置</button>
+            <button type="button" id="cbg-stats-demo">看看样例</button>
+          </div>
         </div>
-      </div>
-      <p id="cbg-stats-status" class="cbg-stats__status"></p>
-      <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="数据仓库脚本"></textarea>
+        <p id="cbg-stats-status" class="cbg-stats__status"></p>
+        <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="stats-config.js 内容"></textarea>
+      </details>
       <div id="cbg-stats-view" class="cbg-stats__view"></div>
     </div>
   </div>
@@ -306,7 +311,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect22" defer></script>
+  <script src="app.js?v=protect23" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -320,7 +325,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect22").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect23").catch(function () {});
       }, start);
     });
   </script>
