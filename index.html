@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="screen-orientation" content="landscape" />
+  <meta name="x5-orientation" content="landscape" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <title>勇闯三星藏宝阁</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect3" />
+  <link rel="stylesheet" href="styles.css?v=protect4" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -151,7 +156,7 @@
     </div>
 
     <button type="button" class="bag-btn" id="bag-btn" hidden title="点开查看已购法宝" aria-label="背包">
-      <img src="assets/shop/jinnang.webp?v=icon9" alt="" width="320" height="292" decoding="async" draggable="false" />
+      <img data-src="assets/shop/jinnang.webp?v=icon11" alt="" width="192" height="175" decoding="async" draggable="false" />
       <span class="bag-btn__n" id="bag-count" hidden aria-hidden="true">0</span>
     </button>
     <div id="bag-panel" class="bag-panel" hidden>
@@ -221,13 +226,13 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect3" defer></script>
+  <script src="app.js?v=protect4" defer></script>
   <script>
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect3").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect4").catch(function () {});
       }, start);
     });
   </script>
