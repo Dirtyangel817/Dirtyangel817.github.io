@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const CACHE = "cbg-protect25";
+  const CACHE = "cbg-protect26";
   const PRECACHE = [];
 
   self.addEventListener("install", (event) => {
@@ -37,6 +37,10 @@
       event.respondWith(
         fetch(request)
           .then((res) => {
+            if (res && res.ok) {
+              const copy = res.clone();
+              caches.open(CACHE).then((cache) => cache.put(request, copy));
+            }
             return res;
           })
           .catch(() => caches.match(request))

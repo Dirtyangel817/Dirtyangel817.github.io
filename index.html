@@ -55,11 +55,8 @@
     document.addEventListener("contextmenu", function (e) { if (!cbgStatsTarget(e.target)) e.preventDefault(); });
   </script>
   <title>勇闯三星藏宝阁</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect25" />
+  <link rel="stylesheet" href="styles.css?v=protect26" />
+  <link rel="preload" as="font" href="assets/fonts/MuzaiPixel.woff2?v=font2" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -114,11 +111,11 @@
     <main class="stage">
       <div class="select-panel" role="group" aria-label="出战角色">
         <button class="hero-slot" type="button" data-hero="red" aria-pressed="false">
-          <img class="sprite" src="assets/juese/little-red.webp?v=fit2" alt="红衣" width="534" height="640" decoding="async" draggable="false" />
+          <img class="sprite" src="assets/juese/little-red.webp?v=fit2" alt="红衣" width="534" height="640" decoding="async" fetchpriority="low" draggable="false" />
           <span class="qty">x3</span>
         </button>
         <button class="hero-slot is-active" type="button" data-hero="blue" aria-pressed="true">
-          <img class="sprite" src="assets/little-blue.webp?v=select2" alt="吕洞宾" width="283" height="320" decoding="async" draggable="false" />
+          <img class="sprite" src="assets/little-blue.webp?v=select2" alt="吕洞宾" width="283" height="320" decoding="async" fetchpriority="low" draggable="false" />
           <span class="qty">x3</span>
         </button>
       </div>
@@ -128,9 +125,9 @@
         <p class="subtitle">你能活到第几关？</p>
       </div>
 
-      <button id="start-btn" class="start-btn" type="button">
+      <button id="start-btn" class="start-btn" type="button" disabled>
         <span class="start-btn__glow" aria-hidden="true"></span>
-        <span class="start-btn__label">开始潜入</span>
+        <span class="start-btn__label">加载中…</span>
       </button>
       <p class="hint">空格 / 回车 · 左右切换角色</p>
     </main>
@@ -176,21 +173,21 @@
       <p class="run-hint">WASD 移动 · 双击 A/D 滑铲 · 空格跳 · J 攻击 · K 玉净瓶 · 右键暂停</p>
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
         <button type="button" class="touch-btn touch-btn--pause touch-btn--icon" data-pad="pause" aria-label="暂停">
-          <img id="touch-pause-icon" src="assets/zhanting/zhanting.webp?v=pause1" alt="" draggable="false" />
+          <img id="touch-pause-icon" data-src="assets/zhanting/zhanting.webp?v=pause1" alt="" draggable="false" />
         </button>
         <div class="touch-pad__left">
           <div id="touch-stick" class="touch-stick" role="group" aria-label="移动摇杆">
-            <img class="touch-stick__art" src="assets/guangbiao/zoulujian.webp?v=stick1" alt="" draggable="false" />
+            <img class="touch-stick__art" data-src="assets/guangbiao/zoulujian.webp?v=stick1" alt="" draggable="false" />
             <span class="touch-stick__well" aria-hidden="true"></span>
             <span class="touch-stick__knob" id="touch-stick-knob" aria-hidden="true"></span>
           </div>
         </div>
         <div class="touch-pad__right">
           <button type="button" class="touch-btn touch-btn--small touch-btn--icon" data-pad="vase" aria-label="玉净瓶">
-            <img src="assets/guangbiao/yujingping.webp?v=pad1" alt="" draggable="false" />
+            <img data-src="assets/guangbiao/yujingping.webp?v=pad1" alt="" draggable="false" />
           </button>
           <button type="button" class="touch-btn touch-btn--atk touch-btn--icon" data-pad="attack" aria-label="攻击">
-            <img src="assets/guangbiao/gongji.webp?v=pad1" alt="" draggable="false" />
+            <img data-src="assets/guangbiao/gongji.webp?v=pad1" alt="" draggable="false" />
           </button>
         </div>
       </div>
@@ -281,30 +278,24 @@
   <div id="cbg-stats" class="cbg-stats" hidden>
     <div class="cbg-stats__panel">
       <h1 class="cbg-stats__title">宝阁数据</h1>
-      <p class="cbg-stats__lead">这是给你看的后台：访客人数、死在第几关、法宝选择、最近对局。玩家正常打开游戏看不到这一页，把地址收藏起来即可。</p>
+      <p class="cbg-stats__lead">这页只是说明书。真正的访客和闯关数字，登录 <a href="https://cloud.umami.is" target="_blank" rel="noreferrer">cloud.umami.is</a> 就能看。</p>
       <details id="cbg-stats-setup" class="cbg-stats__setup" open>
-        <summary>第一次使用：用 Cloudflare 接通仓库（免费，邮箱即可）</summary>
+        <summary>第一次使用：只用 GitHub 登录，复制一串 ID</summary>
         <ol class="cbg-stats__steps">
-          <li>打开 <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noreferrer">Cloudflare 注册页</a>，用邮箱注册并登录。</li>
-          <li>进入 <b>Workers &amp; Pages</b> → <b>Create</b> → <b>Start with Hello World</b>，先部署一次。</li>
-          <li>点本页「生成口令」，再点「复制 Worker 脚本」。到 Worker 里 <b>Edit code</b>，全部替换后 <b>Save and Deploy</b>。</li>
-          <li><b>Settings → Bindings</b> 添加 KV Namespace，变量名必须填 <code>STATS</code>（可点创建新命名空间）。</li>
-          <li><b>Settings → Variables and Secrets</b> 添加密钥，名字填 <code>OWNER_KEY</code>，值填刚才的口令。</li>
-          <li>把 Worker 的 <code>https://….workers.dev</code> 网址填到下面，点「查看数据」。通了之后点「复制游戏配置」，粘进 <code>stats-config.js</code> 再发布。口令不要写进游戏。</li>
+          <li>打开 <a href="https://cloud.umami.is" target="_blank" rel="noreferrer">cloud.umami.is</a>，点 <b>Start free</b> 或 <b>Sign in</b>，选 <b>Continue with GitHub</b>（你发游戏已经有 GitHub）。</li>
+          <li>登录后点 <b>Add website</b>。Name 填 <code>三星藏宝阁</code>，Domain 填 <code>dirtyangel817.github.io</code>，保存。</li>
+          <li>网站卡片上会有一串 Website ID（像 <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>）。把它粘到下面，点「复制配置」发给我，或自己贴进 <code>stats-config.js</code> 再发布。</li>
         </ol>
+        <p class="cbg-stats__lead">以后看数据：再打开 <a href="https://cloud.umami.is" target="_blank" rel="noreferrer">cloud.umami.is</a> 登录。访客在首页；闯关点左边 <b>Events</b>，找「闯关结束」，里面的 <b>stage</b> 就是第几关。</p>
         <div class="cbg-stats__form">
-          <label>Worker 网址<input id="cbg-stats-ep" type="url" spellcheck="false" placeholder="https://cbg-stats.你的账号.workers.dev" /></label>
-          <label>口令<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="off" placeholder="点「生成口令」，和 OWNER_KEY 一致" /></label>
+          <label>Website ID<input id="cbg-stats-id" type="text" spellcheck="false" autocomplete="off" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" /></label>
           <div class="cbg-stats__btns">
-            <button type="button" id="cbg-stats-gen">生成口令</button>
-            <button type="button" id="cbg-stats-copy-worker">复制 Worker 脚本</button>
-            <button type="button" id="cbg-stats-copy">复制游戏配置</button>
-            <button type="button" id="cbg-stats-go">查看数据</button>
-            <button type="button" id="cbg-stats-demo">看看样例</button>
+            <button type="button" id="cbg-stats-copy">复制配置</button>
+            <a class="cbg-stats__linkbtn" href="https://cloud.umami.is" target="_blank" rel="noreferrer">打开 Umami 后台</a>
           </div>
         </div>
         <p id="cbg-stats-status" class="cbg-stats__status"></p>
-        <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="Cloudflare Worker 脚本"></textarea>
+        <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="stats-config.js 内容"></textarea>
       </details>
       <div id="cbg-stats-view" class="cbg-stats__view"></div>
     </div>
@@ -314,22 +305,42 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect25" defer></script>
+  <script src="app.js?v=protect26" defer></script>
   <script>
-    setTimeout(function () {
-      var bootEl = document.getElementById("boot");
-      var gameEl = document.getElementById("game");
-      if (bootEl && gameEl && gameEl.hidden) {
-        bootEl.remove();
-        gameEl.hidden = false;
+    (function () {
+      var shown = false;
+      function showTitle() {
+        if (shown) return;
+        shown = true;
+        var bootEl = document.getElementById("boot");
+        var gameEl = document.getElementById("game");
+        if (gameEl) gameEl.hidden = false;
+        if (!bootEl) return;
+        bootEl.classList.add("is-done");
+        setTimeout(function () {
+          if (bootEl.parentNode) bootEl.remove();
+        }, 280);
       }
-    }, 4000);
+      function maybe() {
+        var img = document.querySelector(".layer-back img");
+        if (img && img.complete && img.naturalWidth) {
+          showTitle();
+          return;
+        }
+        requestAnimationFrame(function () { setTimeout(showTitle, 0); });
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", maybe);
+      else maybe();
+      setTimeout(showTitle, 1200);
+    })();
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
-      var start = navigator.serviceWorker.controller ? 0 : 2200;
-      setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect25").catch(function () {});
-      }, start);
+      var kick = function () {
+        navigator.serviceWorker.register("sw.js?v=protect26").catch(function () {});
+      };
+      var delay = navigator.serviceWorker.controller ? 400 : 4000;
+      if (window.requestIdleCallback && delay > 400) requestIdleCallback(kick, { timeout: delay });
+      else setTimeout(kick, delay);
     });
   </script>
 </body>
