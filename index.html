@@ -55,9 +55,11 @@
     document.addEventListener("contextmenu", function (e) { if (!cbgStatsTarget(e.target)) e.preventDefault(); });
   </script>
   <title>勇闯三星藏宝阁</title>
-  <link rel="preload" as="fetch" href="app.dat?v=protect29" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=protect29" />
-  <link rel="preload" as="font" href="assets/fonts/PressStart2P.woff2?v=font4" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css?v=protect30" />
   <link rel="preload" as="font" href="assets/fonts/MuzaiPixel.woff2?v=font2" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
@@ -307,7 +309,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect29" defer></script>
+  <script src="app.js?v=protect30" defer></script>
   <script>
     (function () {
       var shown = false;
@@ -317,12 +319,17 @@
           document.querySelector(".layer-mid img")
         ];
       }
+      function imgSettled(img) {
+        if (!img) return true;
+        if (!img.complete) return false;
+        return true;
+      }
       function imgsReady() {
         var imgs = titleImgs();
         for (var i = 0; i < imgs.length; i++) {
-          if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) return true;
+          if (!imgSettled(imgs[i])) return false;
         }
-        return false;
+        return true;
       }
       function retryImg(img) {
         if (!img || img.naturalWidth) return;
@@ -340,22 +347,11 @@
         var bootEl = document.getElementById("boot");
         var gameEl = document.getElementById("game");
         if (gameEl) gameEl.hidden = false;
-        if (bootEl) {
-          bootEl.classList.add("is-done");
-          setTimeout(function () {
-            if (bootEl.parentNode) bootEl.remove();
-          }, 280);
-        }
-        var kickFonts = function () {
-          if (document.getElementById("cbg-gfonts")) return;
-          var l = document.createElement("link");
-          l.id = "cbg-gfonts";
-          l.rel = "stylesheet";
-          l.href = "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap";
-          document.head.appendChild(l);
-        };
-        if (window.requestIdleCallback) requestIdleCallback(kickFonts, { timeout: 4000 });
-        else setTimeout(kickFonts, 2500);
+        if (!bootEl) return;
+        bootEl.classList.add("is-done");
+        setTimeout(function () {
+          if (bootEl.parentNode) bootEl.remove();
+        }, 280);
       }
       function arm() {
         var imgs = titleImgs();
@@ -375,12 +371,12 @@
       }
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", arm);
       else arm();
-      setTimeout(showTitle, 700);
+      setTimeout(showTitle, 2800);
     })();
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var kick = function () {
-        navigator.serviceWorker.register("sw.js?v=protect29").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect30").catch(function () {});
       };
       var delay = navigator.serviceWorker.controller ? 400 : 4000;
       if (window.requestIdleCallback && delay > 400) requestIdleCallback(kick, { timeout: delay });
