@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const CACHE = "cbg-protect27";
+  const CACHE = "cbg-protect28";
   const PRECACHE = [];
 
   self.addEventListener("install", (event) => {
