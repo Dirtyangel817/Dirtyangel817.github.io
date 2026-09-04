@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect15" />
+  <link rel="stylesheet" href="styles.css?v=protect16" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -175,7 +175,9 @@
       </div>
       <p class="run-hint">WASD 移动 · 双击 A/D 滑铲 · 空格跳 · J 攻击 · K 玉净瓶 · 右键暂停</p>
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
-        <button type="button" class="touch-btn touch-btn--pause" data-pad="pause" aria-label="暂停">暂停</button>
+        <button type="button" class="touch-btn touch-btn--pause touch-btn--icon" data-pad="pause" aria-label="暂停">
+          <img id="touch-pause-icon" src="assets/zhanting/zhanting.webp?v=pause1" alt="" draggable="false" />
+        </button>
         <div class="touch-pad__left">
           <div id="touch-stick" class="touch-stick" role="group" aria-label="移动摇杆">
             <img class="touch-stick__art" src="assets/guangbiao/zoulujian.webp?v=stick1" alt="" draggable="false" />
@@ -304,7 +306,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect15" defer></script>
+  <script src="app.js?v=protect16" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -318,7 +320,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect15").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect16").catch(function () {});
       }, start);
     });
   </script>
