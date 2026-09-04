@@ -18,19 +18,48 @@
     }
     html, body { touch-action: none; overscroll-behavior: none; }
     img, canvas, svg, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
+    html.cbg-stats-open, html.cbg-stats-open body {
+      overflow: auto !important;
+      height: auto !important;
+      min-height: 100% !important;
+      touch-action: auto !important;
+      overscroll-behavior: auto !important;
+      cursor: auto !important;
+    }
+    html.cbg-stats-open, html.cbg-stats-open * {
+      -webkit-user-select: text !important;
+      user-select: text !important;
+    }
+    html.catalog-preview, html.catalog-preview body {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100% !important;
+      touch-action: pan-y !important;
+      overscroll-behavior: auto !important;
+      cursor: auto !important;
+    }
   </style>
   <script>
-    document.addEventListener("selectstart", function (e) { e.preventDefault(); });
+    try {
+      var qs = new URLSearchParams(location.search);
+      if (qs.has("catalog")) document.documentElement.classList.add("catalog-preview");
+      if (qs.has("mystats")) document.documentElement.classList.add("cbg-stats-open");
+    } catch (e) {}
+    function cbgStatsTarget(el) {
+      return !!(el && el.closest && el.closest("#cbg-stats"));
+    }
+    document.addEventListener("selectstart", function (e) { if (!cbgStatsTarget(e.target)) e.preventDefault(); });
     document.addEventListener("dragstart", function (e) { e.preventDefault(); });
     document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
-    document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+    document.addEventListener("contextmenu", function (e) { if (!cbgStatsTarget(e.target)) e.preventDefault(); });
   </script>
   <title>勇闯三星藏宝阁</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect9" />
+  <link rel="stylesheet" href="styles.css?v=protect6" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -89,7 +118,7 @@
           <span class="qty">x3</span>
         </button>
         <button class="hero-slot is-active" type="button" data-hero="blue" aria-pressed="true">
-          <img class="sprite" src="assets/juese/little-blue.webp?v=fit2" alt="青衫" width="534" height="640" decoding="async" draggable="false" />
+          <img class="sprite" src="assets/xingzouzhen/sword_walk_cycle_transparent_08.png?v=ld1" alt="青衫" width="283" height="324" decoding="async" draggable="false" />
           <span class="qty">x3</span>
         </button>
       </div>
@@ -148,13 +177,19 @@
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
         <button type="button" class="touch-btn touch-btn--pause" data-pad="pause" aria-label="暂停">暂停</button>
         <div class="touch-pad__left">
-          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
-          <button type="button" class="touch-btn touch-btn--dir" data-pad="left" aria-label="左移">左</button>
-          <button type="button" class="touch-btn touch-btn--dir" data-pad="right" aria-label="右移">右</button>
+          <div id="touch-stick" class="touch-stick" role="group" aria-label="移动摇杆">
+            <img class="touch-stick__art" src="assets/guangbiao/zoulujian.webp?v=stick1" alt="" draggable="false" />
+            <span class="touch-stick__well" aria-hidden="true"></span>
+            <span class="touch-stick__knob" id="touch-stick-knob" aria-hidden="true"></span>
+          </div>
         </div>
         <div class="touch-pad__right">
-          <button type="button" class="touch-btn touch-btn--small" data-pad="vase" aria-label="玉净瓶">瓶</button>
-          <button type="button" class="touch-btn touch-btn--atk" data-pad="attack" aria-label="攻击">攻</button>
+          <button type="button" class="touch-btn touch-btn--small touch-btn--icon" data-pad="vase" aria-label="玉净瓶">
+            <img src="assets/guangbiao/yujingping.webp?v=pad1" alt="" draggable="false" />
+          </button>
+          <button type="button" class="touch-btn touch-btn--atk touch-btn--icon" data-pad="attack" aria-label="攻击">
+            <img src="assets/guangbiao/gongji.webp?v=pad1" alt="" draggable="false" />
+          </button>
         </div>
       </div>
       <div id="pause-overlay" class="pause-overlay" hidden>
@@ -241,11 +276,35 @@
     </div>
   </div>
 
+  <div id="cbg-stats" class="cbg-stats" hidden>
+    <div class="cbg-stats__panel">
+      <h1 class="cbg-stats__title">宝阁数据</h1>
+      <p class="cbg-stats__lead">只有知道口令的人能看。玩家正常打开游戏看不到这一页。</p>
+      <ol class="cbg-stats__steps">
+        <li>打开 <a href="https://script.google.com" target="_blank" rel="noreferrer">script.google.com</a>，新建项目，点「生成口令」后复制脚本粘贴进去。</li>
+        <li>部署 → 新部署 → 类型选「网页应用」。执行身份选「我」，访问对象选「任何人」。</li>
+        <li>把部署得到的网址和口令填在下面，点「查看数据」。</li>
+      </ol>
+      <div class="cbg-stats__form">
+        <label>网页应用网址<input id="cbg-stats-ep" type="url" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec" /></label>
+        <label>口令<input id="cbg-stats-key" type="password" spellcheck="false" autocomplete="current-password" /></label>
+        <div class="cbg-stats__btns">
+          <button type="button" id="cbg-stats-gen">生成口令</button>
+          <button type="button" id="cbg-stats-copy">复制脚本</button>
+          <button type="button" id="cbg-stats-go">查看数据</button>
+        </div>
+      </div>
+      <p id="cbg-stats-status" class="cbg-stats__status"></p>
+      <textarea id="cbg-stats-code" class="cbg-stats__code" spellcheck="false" aria-label="数据仓库脚本"></textarea>
+      <div id="cbg-stats-view" class="cbg-stats__view"></div>
+    </div>
+  </div>
+
   <div id="loading-page" class="loading-page" hidden aria-live="polite">
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect9" defer></script>
+  <script src="app.js?v=protect6" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -259,7 +318,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect9").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect6").catch(function () {});
       }, start);
     });
   </script>
