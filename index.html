@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>勇闯三星藏宝阁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css?v=combo102" />
+  <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg9" fetchpriority="high" />
+</head>
+<body>
+  <div id="boot" class="boot"><p class="boot-text">LOADING...</p></div>
+  <div id="cursor" class="cursor" aria-hidden="true"></div>
+
+  <div id="game" class="game" hidden>
+    <div class="scene" id="scene">
+      <div class="scene-frame" id="scene-frame">
+        <div class="layer layer-back" data-depth="0.18">
+          <img src="assets/biaoti/background2.webp?v=bg9" alt="" width="1280" height="880" decoding="async" fetchpriority="high" draggable="false" />
+        </div>
+        <div class="layer layer-mid" data-depth="0.48">
+          <img data-src="assets/biaoti/background1.webp?v=bg9" alt="" width="1280" height="658" decoding="async" draggable="false" />
+        </div>
+        <div class="layer layer-front" data-depth="1.05">
+          <img data-src="assets/biaoti/foreground-clouds.webp?v=bg9" alt="" width="1600" height="400" decoding="async" draggable="false" />
+        </div>
+      </div>
+    </div>
+
+    <header class="hud">
+      <div class="coin">
+        <img class="coin-icon" src="assets/ui/money.png" alt="" draggable="false" />
+        <canvas class="coin-count" id="coin-count" width="160" height="100" aria-label="金币 x000"></canvas>
+      </div>
+      <div class="stage-timer" id="stage-timer" hidden>
+        <span class="stage-timer__label" id="stage-label">第 1 关</span>
+        <span class="stage-timer__time" id="stage-time">30</span>
+      </div>
+      <div class="hud-right">
+      <div class="party" id="party">
+        <div class="member" data-hero="red">
+          <img class="portrait" src="assets/juese/little-red-head.webp?v=fit2" alt="钟离权" width="192" height="176" decoding="async" draggable="false" />
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="lives" aria-label="剩余命数">x<span class="lives__n">3</span></span>
+        </div>
+        <div class="member" data-hero="blue">
+          <img class="portrait" src="assets/juese/little-blue-head.webp?v=fit2" alt="吕洞宾" width="192" height="176" decoding="async" draggable="false" />
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="lives" aria-label="剩余命数">x<span class="lives__n">3</span></span>
+        </div>
+      </div>
+      <div class="gou-hud" id="gou-hud" hidden>
+        <img class="gou-hud__icon" data-src="assets/gou/tupiao.png?v=hud1" alt="恶犬" width="192" height="192" decoding="async" draggable="false" />
+        <span class="gou-hud__bar bar" id="gou-hp-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div class="select-panel" role="group" aria-label="出战角色">
+        <button class="hero-slot" type="button" data-hero="red" aria-pressed="false">
+          <img class="sprite" src="assets/juese/little-red.webp?v=fit2" alt="红衣" width="534" height="640" decoding="async" draggable="false" />
+          <span class="qty">x3</span>
+        </button>
+        <button class="hero-slot is-active" type="button" data-hero="blue" aria-pressed="true">
+          <img class="sprite" src="assets/juese/little-blue.webp?v=fit2" alt="青衫" width="534" height="640" decoding="async" draggable="false" />
+          <span class="qty">x3</span>
+        </button>
+      </div>
+
+      <div class="title-block">
+        <h1 class="brand">勇闯三星藏宝阁</h1>
+        <p class="subtitle">你能活到第几关？</p>
+      </div>
+
+      <button id="start-btn" class="start-btn" type="button">
+        <span class="start-btn__glow" aria-hidden="true"></span>
+        <span class="start-btn__label">开始潜入</span>
+      </button>
+      <p class="hint">空格 / 回车 · 左右切换角色</p>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <section id="runway" class="runway" hidden aria-label="格斗场地">
+      <div class="runway-sky" aria-hidden="true">
+        <div class="run-parallax run-parallax--back" id="run-back" title="远景">
+          <div class="run-parallax__art" data-run-bg="back"></div>
+        </div>
+        <div class="run-parallax run-parallax--mid" id="run-mid" title="中景">
+          <div class="run-parallax__art" data-run-bg="mid"></div>
+        </div>
+        <div class="run-parallax run-parallax--front" id="run-front" title="近景">
+          <div class="run-parallax__art" data-run-bg="front"></div>
+        </div>
+      </div>
+      <div class="runway-abyss" aria-hidden="true"></div>
+      <div class="track-layer" id="track-layer">
+        <div class="track-world" id="track-world"></div>
+      </div>
+      <div class="runner" id="runner">
+        <div class="runner__shadow" aria-hidden="true"></div>
+        <div class="runner__body" id="player-body">
+          <div class="player-feet" id="player-feet" aria-hidden="true">
+            <img class="player-foot player-foot--left" id="player-foot-left" alt="" draggable="false" />
+            <img class="player-foot player-foot--right" id="player-foot-right" alt="" draggable="false" />
+          </div>
+          <img class="runner__sprite" id="runner-sprite" alt="" width="128" height="128" draggable="false" />
+          <div class="weapon-rack" id="weapon-rack" hidden></div>
+          <div class="arm-socket" id="arm-socket" hidden>
+            <!-- 弧光在剑下层，参考 zuhefangfa：剑尖切入弧内侧 -->
+            <div class="slash-vfx" id="slash-vfx" hidden aria-hidden="true"></div>
+            <img class="arm-weapon" id="arm-weapon" alt="" draggable="false" />
+          </div>
+        </div>
+        <div class="fan-arc" id="fan-arc" aria-hidden="true"></div>
+      </div>
+      <div class="combo-stage" id="combo-stage" hidden aria-hidden="true"></div>
+      <p class="run-hint">WASD 移动 · 双击 A/D 滑铲 · 空格跳 · J 攻击 · K 玉净瓶 · 右键暂停</p>
+      <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
+        <div class="touch-pad__left">
+          <button type="button" class="touch-btn touch-btn--dir" data-pad="left" aria-label="左移">左</button>
+          <button type="button" class="touch-btn touch-btn--dir" data-pad="right" aria-label="右移">右</button>
+          <button type="button" class="touch-btn touch-btn--dash" data-pad="dash" aria-label="冲刺">冲</button>
+        </div>
+        <div class="touch-pad__right">
+          <button type="button" class="touch-btn touch-btn--small" data-pad="vase" aria-label="玉净瓶">瓶</button>
+          <button type="button" class="touch-btn touch-btn--small" data-pad="pause" aria-label="暂停">停</button>
+          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
+          <button type="button" class="touch-btn touch-btn--atk" data-pad="attack" aria-label="攻击">攻</button>
+        </div>
+      </div>
+      <div id="pause-overlay" class="pause-overlay" hidden>
+        <p class="pause-overlay__title">暂停</p>
+        <p class="pause-overlay__hint">点暂停 / 右键 / P / Esc 继续</p>
+      </div>
+    </section>
+
+    <div id="gameover-overlay" class="gameover-overlay" hidden>
+      <div class="gameover-overlay__panel" role="dialog" aria-label="结算">
+        <p class="gameover-overlay__title" id="gameover-title">命数耗尽</p>
+        <p class="gameover-overlay__hint" id="gameover-hint">是否再来一局挑战宝阁？</p>
+        <div class="gameover-overlay__actions">
+          <button type="button" class="gameover-btn gameover-btn--continue" id="gameover-continue">再来一局</button>
+          <button type="button" class="gameover-btn gameover-btn--quit" id="gameover-quit">退出游戏</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="bag-btn" id="bag-btn" hidden title="点开查看已购法宝" aria-label="背包">
+      <img src="assets/shop/jinnang.webp?v=icon9" alt="" width="320" height="292" decoding="async" draggable="false" />
+      <span class="bag-btn__n" id="bag-count" hidden aria-hidden="true">0</span>
+    </button>
+    <div id="bag-panel" class="bag-panel" hidden>
+      <header class="bag-panel__head">
+        <span>已购法宝</span>
+        <button type="button" class="bag-panel__close" id="bag-close" aria-label="关闭">×</button>
+      </header>
+      <div class="bag-panel__list" id="bag-list"></div>
+      <p class="bag-panel__empty" id="bag-empty">尚未购入法宝</p>
+    </div>
+
+    <div id="shop" class="shop" hidden>
+      <div class="shop__layout">
+        <div class="shop__panel" role="dialog" aria-label="宝阁商店">
+          <header class="shop__head">
+            <h2 class="shop__title">商店</h2>
+            <div class="shop__gold">
+              <img src="assets/ui/money.png" alt="" draggable="false" />
+              <span id="shop-gold">0</span>
+            </div>
+          </header>
+          <div class="shop__slots" id="shop-slots">
+            <button type="button" class="shop-slot" data-item="">
+              <span class="shop-slot__frame">
+                <img alt="" decoding="async" draggable="false" />
+              </span>
+              <span class="shop-slot__name"></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+            </button>
+            <button type="button" class="shop-slot" data-item="">
+              <span class="shop-slot__frame">
+                <img alt="" decoding="async" draggable="false" />
+              </span>
+              <span class="shop-slot__name"></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+            </button>
+            <button type="button" class="shop-slot" data-item="">
+              <span class="shop-slot__frame">
+                <img alt="" decoding="async" draggable="false" />
+              </span>
+              <span class="shop-slot__name"></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+            </button>
+          </div>
+          <div class="shop__tip" id="shop-tip">
+                <strong id="shop-tip-name">点击商品查看详情</strong>
+                <p id="shop-tip-desc">每次只出 3 件宝物。可花金币刷新；备好后点「进入下一关」</p>
+                <p id="shop-tip-effect" hidden></p>
+          </div>
+          <div class="shop__actions">
+            <button type="button" class="shop__refresh" id="shop-refresh">
+              刷新
+              <span class="shop__refresh-cost">
+                <img src="assets/ui/money.png" alt="" />
+                <b id="shop-refresh-cost">2</b>
+              </span>
+            </button>
+            <button type="button" class="shop__buy" id="shop-buy">购买</button>
+          </div>
+        </div>
+        <button type="button" class="shop__next" id="shop-next">进入第 <span class="shop__next-n">2</span> 关</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading-page" class="loading-page" hidden aria-live="polite">
+    <p class="loading-page__text">LOADING...</p>
+  </div>
+
+  <script src="sword-config.js?v=combo101" defer></script>
+  <script src="sword-input.js?v=combo1" defer></script>
+  <script src="sword-audio.js?v=combo15" defer></script>
+  <script src="sword-hitstop.js?v=sword2" defer></script>
+  <script src="sword-camera.js?v=combo14" defer></script>
+  <script src="sword-combat.js?v=combo103" defer></script>
+  <script src="combat.js?v=combo248" defer></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!("serviceWorker" in navigator)) return;
+      var start = navigator.serviceWorker.controller ? 0 : 2200;
+      setTimeout(function () {
+        navigator.serviceWorker.register("sw.js?v=bg10").catch(function () {});
+      }, start);
+    });
+  </script>
+</body>
+</html>
