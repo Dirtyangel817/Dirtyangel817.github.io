@@ -8,12 +8,29 @@
   <meta name="x5-fullscreen" content="true" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <style>
+    html, body, * {
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body { touch-action: none; overscroll-behavior: none; }
+    img, canvas, svg, video { -webkit-user-drag: none; -webkit-touch-callout: none; }
+  </style>
+  <script>
+    document.addEventListener("selectstart", function (e) { e.preventDefault(); });
+    document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
+    document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  </script>
   <title>勇闯三星藏宝阁</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=combo109" />
+  <link rel="stylesheet" href="styles.css?v=protect6" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -226,13 +243,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="sword-config.js?v=combo101" defer></script>
-  <script src="sword-input.js?v=combo1" defer></script>
-  <script src="sword-audio.js?v=combo16" defer></script>
-  <script src="sword-hitstop.js?v=sword2" defer></script>
-  <script src="sword-camera.js?v=combo14" defer></script>
-  <script src="sword-combat.js?v=combo104" defer></script>
-  <script src="combat.js?v=combo255" defer></script>
+  <script src="app.js?v=protect6" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -246,7 +257,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=play1").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect6").catch(function () {});
       }, start);
     });
   </script>
