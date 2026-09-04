@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect23" />
+  <link rel="stylesheet" href="styles.css?v=protect24" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -287,7 +287,7 @@
         <ol class="cbg-stats__steps">
           <li>打开 <a href="https://console.leancloud.app/register" target="_blank" rel="noreferrer">LeanCloud 国际版</a> 注册并登录（邮箱即可，github.io 不用备案）。</li>
           <li>创建一个免费应用。进入 <b>Settings → App keys</b>，复制 <b>App ID</b> 和 <b>App Key</b>（不要复制 Master Key）。</li>
-          <li>打开 <b>Settings → Security</b>，在 Web security domains 里加上 <code>https://dirtyangel817.github.io</code>。本地测试不用加，localhost 默认放行。</li>
+          <li>打开 <b>Settings → Security</b>，在 Web security domains 里加上 <code>https://dirtyangel817.github.io</code>。本地测试一般不用加；若用 127.0.0.1 打开失败，再把 <code>http://127.0.0.1:端口</code> 加上。</li>
           <li>填到下面，点「查看数据」。通了之后点「复制配置」，粘进项目里的 <code>stats-config.js</code>，再重新发布网页，之后所有玩家都会被统计。</li>
         </ol>
         <div class="cbg-stats__form">
@@ -311,7 +311,7 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect23" defer></script>
+  <script src="app.js?v=protect24" defer></script>
   <script>
     setTimeout(function () {
       var bootEl = document.getElementById("boot");
@@ -325,7 +325,7 @@
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect23").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect24").catch(function () {});
       }, start);
     });
   </script>
