@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect4" />
+  <link rel="stylesheet" href="styles.css?v=protect5" />
   <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
@@ -129,9 +129,9 @@
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
         <button type="button" class="touch-btn touch-btn--pause" data-pad="pause" aria-label="暂停">暂停</button>
         <div class="touch-pad__left">
+          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
           <button type="button" class="touch-btn touch-btn--dir" data-pad="left" aria-label="左移">左</button>
           <button type="button" class="touch-btn touch-btn--dir" data-pad="right" aria-label="右移">右</button>
-          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
         </div>
         <div class="touch-pad__right">
           <button type="button" class="touch-btn touch-btn--small" data-pad="vase" aria-label="玉净瓶">瓶</button>
@@ -226,13 +226,21 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect4" defer></script>
+  <script src="app.js?v=protect5" defer></script>
   <script>
+    setTimeout(function () {
+      var bootEl = document.getElementById("boot");
+      var gameEl = document.getElementById("game");
+      if (bootEl && gameEl && gameEl.hidden) {
+        bootEl.remove();
+        gameEl.hidden = false;
+      }
+    }, 4000);
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect4").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect5").catch(function () {});
       }, start);
     });
   </script>
