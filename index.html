@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="styles.css?v=protect1" />
-  <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg9" fetchpriority="high" />
+  <link rel="stylesheet" href="styles.css?v=protect3" />
+  <link rel="preload" as="image" href="assets/biaoti/background1.webp?v=bg10" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/biaoti/background2.webp?v=bg10" fetchpriority="high" />
 </head>
 <body>
   <div id="boot" class="boot"><p class="boot-text">LOADING...</p></div>
@@ -19,20 +20,20 @@
     <div class="scene" id="scene">
       <div class="scene-frame" id="scene-frame">
         <div class="layer layer-back" data-depth="0.18">
-          <img src="assets/biaoti/background2.webp?v=bg9" alt="" width="1280" height="880" decoding="async" fetchpriority="high" draggable="false" />
+          <img src="assets/biaoti/background2.webp?v=bg10" alt="" width="1152" height="792" fetchpriority="high" draggable="false" />
         </div>
         <div class="layer layer-mid" data-depth="0.48">
-          <img data-src="assets/biaoti/background1.webp?v=bg9" alt="" width="1280" height="658" decoding="async" draggable="false" />
+          <img src="assets/biaoti/background1.webp?v=bg10" alt="" width="1024" height="527" fetchpriority="high" draggable="false" />
         </div>
         <div class="layer layer-front" data-depth="1.05">
-          <img data-src="assets/biaoti/foreground-clouds.webp?v=bg9" alt="" width="1600" height="400" decoding="async" draggable="false" />
+          <img data-src="assets/biaoti/foreground-clouds.webp?v=bg10" alt="" width="960" height="670" decoding="async" draggable="false" />
         </div>
       </div>
     </div>
 
     <header class="hud">
       <div class="coin">
-        <img class="coin-icon" src="assets/ui/money.png" alt="" draggable="false" />
+        <img class="coin-icon" src="assets/ui/money.webp?v=icon10" alt="" draggable="false" />
         <canvas class="coin-count" id="coin-count" width="160" height="100" aria-label="金币 x000"></canvas>
       </div>
       <div class="stage-timer" id="stage-timer" hidden>
@@ -53,7 +54,7 @@
         </div>
       </div>
       <div class="gou-hud" id="gou-hud" hidden>
-        <img class="gou-hud__icon" data-src="assets/gou/tupiao.png?v=hud1" alt="恶犬" width="192" height="192" decoding="async" draggable="false" />
+        <img class="gou-hud__icon" data-src="assets/gou/tupiao.webp?v=hud2" alt="恶犬" width="192" height="192" decoding="async" draggable="false" />
         <span class="gou-hud__bar bar" id="gou-hp-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
       </div>
       </div>
@@ -121,15 +122,14 @@
       <div class="combo-stage" id="combo-stage" hidden aria-hidden="true"></div>
       <p class="run-hint">WASD 移动 · 双击 A/D 滑铲 · 空格跳 · J 攻击 · K 玉净瓶 · 右键暂停</p>
       <div id="touch-pad" class="touch-pad" aria-label="触屏操作">
+        <button type="button" class="touch-btn touch-btn--pause" data-pad="pause" aria-label="暂停">暂停</button>
         <div class="touch-pad__left">
           <button type="button" class="touch-btn touch-btn--dir" data-pad="left" aria-label="左移">左</button>
           <button type="button" class="touch-btn touch-btn--dir" data-pad="right" aria-label="右移">右</button>
-          <button type="button" class="touch-btn touch-btn--dash" data-pad="dash" aria-label="冲刺">冲</button>
+          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
         </div>
         <div class="touch-pad__right">
           <button type="button" class="touch-btn touch-btn--small" data-pad="vase" aria-label="玉净瓶">瓶</button>
-          <button type="button" class="touch-btn touch-btn--small" data-pad="pause" aria-label="暂停">停</button>
-          <button type="button" class="touch-btn touch-btn--jump" data-pad="jump" aria-label="跳跃">跳</button>
           <button type="button" class="touch-btn touch-btn--atk" data-pad="attack" aria-label="攻击">攻</button>
         </div>
       </div>
@@ -169,7 +169,7 @@
           <header class="shop__head">
             <h2 class="shop__title">商店</h2>
             <div class="shop__gold">
-              <img src="assets/ui/money.png" alt="" draggable="false" />
+              <img src="assets/ui/money.webp?v=icon10" alt="" draggable="false" />
               <span id="shop-gold">0</span>
             </div>
           </header>
@@ -179,21 +179,21 @@
                 <img alt="" decoding="async" draggable="false" />
               </span>
               <span class="shop-slot__name"></span>
-              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.webp?v=icon10" alt="" /><b>20</b></span>
             </button>
             <button type="button" class="shop-slot" data-item="">
               <span class="shop-slot__frame">
                 <img alt="" decoding="async" draggable="false" />
               </span>
               <span class="shop-slot__name"></span>
-              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.webp?v=icon10" alt="" /><b>20</b></span>
             </button>
             <button type="button" class="shop-slot" data-item="">
               <span class="shop-slot__frame">
                 <img alt="" decoding="async" draggable="false" />
               </span>
               <span class="shop-slot__name"></span>
-              <span class="shop-slot__price"><img src="assets/ui/money.png" alt="" /><b>20</b></span>
+              <span class="shop-slot__price"><img src="assets/ui/money.webp?v=icon10" alt="" /><b>20</b></span>
             </button>
           </div>
           <div class="shop__tip" id="shop-tip">
@@ -205,7 +205,7 @@
             <button type="button" class="shop__refresh" id="shop-refresh">
               刷新
               <span class="shop__refresh-cost">
-                <img src="assets/ui/money.png" alt="" />
+                <img src="assets/ui/money.webp?v=icon10" alt="" />
                 <b id="shop-refresh-cost">2</b>
               </span>
             </button>
@@ -221,13 +221,13 @@
     <p class="loading-page__text">LOADING...</p>
   </div>
 
-  <script src="app.js?v=protect2" defer></script>
+  <script src="app.js?v=protect3" defer></script>
   <script>
     window.addEventListener("load", function () {
       if (!("serviceWorker" in navigator)) return;
       var start = navigator.serviceWorker.controller ? 0 : 2200;
       setTimeout(function () {
-        navigator.serviceWorker.register("sw.js?v=protect2").catch(function () {});
+        navigator.serviceWorker.register("sw.js?v=protect3").catch(function () {});
       }, start);
     });
   </script>

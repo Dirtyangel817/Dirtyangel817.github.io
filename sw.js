@@ -1,12 +1,8 @@
 (() => {
   "use strict";
 
-  const CACHE = "cbg-protect2";
-  const PRECACHE = [
-    "assets/biaoti/background2.webp?v=bg9",
-    "assets/biaoti/background1.webp?v=bg9",
-    "assets/biaoti/foreground-clouds.webp?v=bg9",
-  ];
+  const CACHE = "cbg-protect3";
+  const PRECACHE = [];
 
   self.addEventListener("install", (event) => {
     self.skipWaiting();
