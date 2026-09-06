@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const CACHE = "cbg-protect45";
+  const CACHE = "cbg-protect46";
   const PRECACHE = [];
 
   self.addEventListener("install", (event) => {
@@ -26,10 +26,34 @@
     return false;
   }
 
+  const GOAT_COUNT = "https://velum.goatcounter.com/count";
+
+  function isGoatHit(url) {
+    return url.pathname === "/cbg-hit" || url.pathname.endsWith("/cbg-hit");
+  }
+
+  async function relayGoatHit(request) {
+    const src = new URL(request.url);
+    try {
+      await fetch(GOAT_COUNT + src.search, {
+        method: "GET",
+        mode: "no-cors",
+        credentials: "omit",
+        cache: "no-store",
+        keepalive: true,
+      });
+    } catch (_) {}
+    return new Response("", { status: 204, headers: { "Cache-Control": "no-store" } });
+  }
+
   self.addEventListener("fetch", (event) => {
     const request = event.request;
-    if (request.method !== "GET") return;
     const url = new URL(request.url);
+    if (url.origin === self.location.origin && isGoatHit(url)) {
+      event.respondWith(relayGoatHit(request));
+      return;
+    }
+    if (request.method !== "GET") return;
     if (url.origin !== self.location.origin) return;
     if (url.pathname.endsWith("/sw.js")) return;
 
